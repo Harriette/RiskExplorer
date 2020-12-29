@@ -10,14 +10,14 @@
                 <div class="col-md-10">
 
                     <!-- Heading -->
-                    <h2 class="display-4 font-weight-bold white-text pt-5 mb-2">Risk Explorer</h2>
+                    <h2 class="display-4 white-text pt-5 mb-2">Risk Explorer</h2>
 
                     <!-- Divider -->
                     <hr style="color: white;">
 
                     <!-- Description -->
-                    <h4 class="white-text my-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti consequuntur.</h4>
-                    <button type="button" class="btn btn-outline-white">Read more<i class="fas fa-book ml-2"></i></button>
+                    <h4 class="white-text my-4">Understanding and managing risk.</h4>
+                    <button type="button" class="btn btn-outline-light">Log in<i class="fas fa-book ml-2"></i></button>
 
                 </div>
 
