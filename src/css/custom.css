@@ -29,13 +29,9 @@ header,
 }
 
 .rgba-black-strong {
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0,0,0,0.5);
 }
 
 .white-text {
   color: white;
-}
-
-h1 {
-  color: red;
 }
