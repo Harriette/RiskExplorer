@@ -20,11 +20,11 @@ CREATE TABLE IF NOT EXISTS profiles (
   last_name       VARCHAR(128)  NOT NULL DEFAULT '',
   company_ID	  INT UNSIGNED,
   department_ID	  INT UNSIGNED,
-  picture_path	  VARCHAR(512),		
-  
+  picture_path	  VARCHAR(512),
+
   PRIMARY KEY     (profile_ID),
   INDEX           (first_name, last_name),
-  
+
   CONSTRAINT FOREIGN KEY (company_ID)
     REFERENCES companies (company_ID),
   CONSTRAINT FOREIGN KEY (department_ID)
@@ -34,12 +34,12 @@ CREATE TABLE IF NOT EXISTS profiles (
 CREATE TABLE IF NOT EXISTS users (
   user_ID      	  INT UNSIGNED  NOT NULL AUTO_INCREMENT,
   user_name       VARCHAR(128)  NOT NULL DEFAULT '',
-  password_hash   VARCHAR(128)  NOT NULL DEFAULT '',
+  password_hash   VARCHAR(512)  NOT NULL DEFAULT '',
   profile_ID		  INT UNSIGNED,
-  
+
   PRIMARY KEY     (user_ID),
   INDEX           (user_name),
-  
+
   CONSTRAINT FOREIGN KEY (profile_ID)
   REFERENCES profiles (profile_ID)
 );

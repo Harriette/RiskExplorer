@@ -20,7 +20,7 @@ INSERT INTO profiles (first_name, last_name, company_ID, department_ID)
 
 INSERT INTO users (user_name, password_hash, profile_ID)
   VALUES
-    ('desilvan', '123', 1);
+    ('desilvan', '$2y$10$FpcuOwEkqoYJAm3AE/PepuXjl5vvEbFhrECvrcxwzaGtm1zib1dom', 1);
 
 INSERT INTO processes (name)
   VALUES

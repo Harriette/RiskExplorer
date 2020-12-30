@@ -1,7 +1,35 @@
 <?php
   session_start();
 
+  require_once 'common/DbConnect.php';
+  $db = new DbConnect();
+  $conn = $db->connect();
 
+  if( isset( $_POST['inputUsername'] ) && isset( $_POST['inputPassword'] ) ) {
+
+    $e = $_POST['inputEmail'];
+    $p = $_POST['inputPassword'];
+
+    $sql = "SELECT profile_id, password_hash FROM users WHERE user_name = :un";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute( array( ':un' => $_POST['inputUsername'] ) );
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $res = password_verify($_POST['inputPassword'], $row['password_hash']);
+
+    if ( $res === FALSE ) {
+       error_log("Login fail ".$_POST['inputEmail']);
+       $_SESSION['error'] = "Login incorrect.";
+       header("Location: index.php");
+       return;
+    } else {
+      error_log("Login success ".$_POST['inputEmail']);
+      $_SESSION['success'] = "Login successful.";
+      $_SESSION['user'] = $row['name'];
+      header("Location: app.php");
+      return;
+    }
+
+  }
 
 ?>
 
@@ -51,6 +79,10 @@
                           </div>
 
                         </form>
+
+                        <div class="">
+<?php require_once "common/flash_messages.php" ?>
+                        </div>
 
                     </div>
 
