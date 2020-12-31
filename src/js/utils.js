@@ -2,9 +2,10 @@
 
 function initRisklogTable(tableID, data) {
 
-  console.log(data);
 
   return ( function(data) {
+    console.log(data);
+
     var table = $(tableID).DataTable( {
       data: data,
       columns: [
@@ -19,17 +20,17 @@ function initRisklogTable(tableID, data) {
         { data: 'company' },
         { data: 'department' },
         { data: 'process' },
+        { data: 'risk_ID',
+          render: function ( data, type, row, meta ) {
+            return ('<button type="button" class="btn btn-warning btn-sm" value=' + data + '><i class="fa fa-pencil-alt" style="color: white;"></i></button>' +
+              '<button type="button" class="btn btn-danger btn-sm" value=' + data + '><i class="fa fa-trash-alt"></i></button>'
+            );
+          }
+        }
+
       ],
-      columnDefs: [ {
-        targets: "Actions",
-        data: null,
-        defaultContent: "<button>Click</button>",
-      }],
 
     });
-
-
-
 
   });
 

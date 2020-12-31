@@ -11,6 +11,9 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
+<!-- Font Awesome -->
+<script src="https://kit.fontawesome.com/9a894352cf.js" crossorigin="anonymous"></script>
+
 
 <!-- Link to own stylesheet and javascript -->
 <link rel="stylesheet" href="/css/custom4.css">
