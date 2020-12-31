@@ -5,7 +5,10 @@ require_once 'common/DbConnect.php';
 $db = new DbConnect();
 $conn = $db->connect();
 
-
+$sql = "SELECT * FROM risks";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$users = $stmt->fetchAll(PDO::FETCH_ASSOC)
 
 ?>
 
@@ -47,29 +50,34 @@ $conn = $db->connect();
       <main class="col-md-9 col-lg-10 ms-sm-auto px-md-4">
 
         <!-- Risk Log -->
-        <div class="container" id="page-risklog">
+        <div class="" id="page-risklog">
 
           <h1>Risk Log</h1>
 
           <div class="container" id="table-risklog">
 
             <table id="risklog-table" class="display">
-                <thead>
-                    <tr>
-                        <th>Column 1</th>
-                        <th>Column 2</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Row 1 Data 1</td>
-                        <td>Row 1 Data 2</td>
-                    </tr>
-                    <tr>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                    </tr>
-                </tbody>
+
+              <thead>
+                <tr>
+                  <th rowspan="2">ID</th>
+                  <th rowspan="2">Level</th>
+                  <th rowspan="2">Name</th>
+                  <th rowspan="2">Description</th>
+                  <th colspan="4">Ratings</th>
+                  <th rowspan="2">Company</th>
+                  <th rowspan="2">Department</th>
+                  <th rowspan="2">Process</th>
+                  <th rowspan="2">Actions</th>
+                <tr>
+                  <th>Prob</th>
+                  <th>Severity</th>
+                  <th>Reputation</th>
+                  <th>RAG</th>
+                </tr>
+              </thead>
+
+
             </table>
 
           </div>
@@ -89,9 +97,13 @@ $conn = $db->connect();
 
 <script type="text/javascript">
   $(document).ready( function () {
-    $('#risklog-table').DataTable();
-  } );
+    $.getJSON('common/get_risks.php', initRisklogTable('#risklog-table') );
+  });
+
 </script>
 
+<script type="text/javascript">
+  // Do this *after* the table tag is rendered
+</script>
 
 </html>
