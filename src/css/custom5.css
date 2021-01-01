@@ -68,3 +68,19 @@ RISKLOG
   font-size: 0.8rem;
   margin: 1px;
 }
+
+#risklog-table .green {
+  background-color: #b6ffb6 !important;
+}
+
+#risklog-table .yellow {
+  background-color: #fffbb6 !important;
+}
+
+#risklog-table .amber {
+  background-color: #ffcc85 !important;
+}
+
+#risklog-table .red {
+  background-color: #ffb6b6 !important;
+}

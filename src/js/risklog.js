@@ -38,6 +38,22 @@ function initRisklogTable(tableID, data) {
           }
         }
       ],
+      createdRow: function(row, data, dataIndex) {
+        switch (data['rag_rating']) {
+          case '1':
+            $(row).addClass('green')
+            break;
+          case '2':
+            $(row).addClass('yellow')
+            break;
+          case '3':
+              $(row).addClass('amber')
+              break;
+          case '4':
+            $(row).addClass('red')
+            break;
+        }
+      }
     });
 
 
