@@ -4,7 +4,14 @@ require_once 'DbConnect.php';
 $db = new DbConnect();
 $conn = $db->connect();
 
-$sql = "SELECT * FROM companies";
+switch ($_GET['table']) {
+  case 'companies':
+    $sql = "SELECT * FROM companies";
+    break;
+  case 'departments':
+    $sql = "SELECT * FROM departments";
+    break;
+}
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();

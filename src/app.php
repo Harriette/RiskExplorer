@@ -95,14 +95,15 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC)
   $(document).ready( function () {
 
     console.log('Get company data');
-    $.getJSON('common/get_companies.php', initSelector('#selectCompany', 'Choose company') );
-
+    $.getJSON('common/get_tables.php', 'table=companies', initSelector('#selectCompany', 'Choose company') );
 
     console.log('Get department data');
-    $.getJSON('common/get_departments.php', initSelector('#selectDepartment', 'Choose department') );
+    $.getJSON('common/get_tables.php', 'table=departments', initSelector('#selectDepartment', 'Choose department') );
 
     console.log('Get risk data');
     $.getJSON('common/get_risks.php', initRisklogTable('#risklog-table') );
+
+
   });
 
 </script>
