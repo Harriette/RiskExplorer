@@ -4,9 +4,7 @@ require_once 'DbConnect.php';
 $db = new DbConnect();
 $conn = $db->connect();
 
-$sql = "
-SELECT * FROM companies;
-";
+$sql = "SELECT * FROM companies";
 
 $stmt = $conn->prepare($sql);
 $stmt->execute();

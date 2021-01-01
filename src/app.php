@@ -95,7 +95,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC)
   $(document).ready( function () {
 
     console.log('Get company data');
-    $.getJSON('common/get_companies.php', 'Hello!', initSelector('#selectCompany', 'Choose company') );
+    $.getJSON('common/get_companies.php', initSelector('#selectCompany', 'Choose company') );
 
 
     console.log('Get department data');
