@@ -4,7 +4,7 @@ function initRisklogTable(tableID, data) {
 
 
   return ( function(data) {
-    console.log(data);
+  //  console.log(data);
 
     var table = $(tableID).DataTable( {
       data: data,
@@ -31,6 +31,27 @@ function initRisklogTable(tableID, data) {
       ],
 
     });
+
+  });
+
+}
+
+
+function initSelector(selectorID, message, data) {
+
+
+  return ( function(data) {
+    console.log(data);
+
+    var selInput = $(selectorID);
+    selInput.empty();
+    selInput.append('<option selected="true" disabled>' + message + '</option>');
+    selInput.prop('selectedIndex', 0);
+
+    $.each(data, function(key, val) {
+      selInput.append($('<option></option>').attr('value', val.name).text(val.name));
+    });
+
 
   });
 
