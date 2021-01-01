@@ -16,4 +16,4 @@
 
 <!-- Link to own stylesheet and javascript -->
 <link rel="stylesheet" href="/css/custom5.css">
-<script type="text/javascript" charset="utf8" src="../js/utils.js"></script>
+<script type="text/javascript" charset="utf8" src="../js/risklog.js"></script>
