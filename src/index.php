@@ -82,7 +82,7 @@ if( isset( $_POST['inputUsername'] ) && isset( $_POST['inputPassword'] ) ) {
           <form class="login white-text" method="post">
 
             <div class="mb-3">
-              <label for="inputUsername" class="form-label text-left">User name</label>
+              <label for="inputUsername" class="form-label text-left">Username</label>
               <input type="text" class="form-control" name="inputUsername" value="" placeholder="username">
             </div>
 

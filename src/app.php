@@ -60,7 +60,6 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC)
           <div class="container" id="table-risklog">
 
             <table id="risklog-table" class="display">
-
               <thead>
                 <tr>
                   <th rowspan="2">ID</th>
@@ -79,14 +78,25 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC)
                   <th>RAG</th>
                 </tr>
               </thead>
-
-
+              <!-- Javascript to fill the table -->
             </table>
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRiskModal">
+              Add new risk
+            </button>
+
+            <!-- Add risk modal -->
+            <?php require_once "common/risks-modal.php" ?>
 
           </div>
 
         </div>
         <!-- End of Risk Log -->
+
+
+
+
 
 
 
