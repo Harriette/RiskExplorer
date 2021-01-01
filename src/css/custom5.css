@@ -1,4 +1,4 @@
-/*
+
 #intro {
     height: 100%;
 }
@@ -31,9 +31,13 @@
   color: white;
 }
 
-*/
+
+html {
+  height: 100%
+}
 
 body {
+  height: 100%;
   padding-top: 60px;
 }
 

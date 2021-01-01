@@ -1,4 +1,7 @@
-/*
+html, body {
+  height: 100%
+}
+
 #intro {
     height: 100%;
 }
@@ -29,37 +32,4 @@
 
 .white-text {
   color: white;
-}
-
-*/
-
-body {
-  padding-top: 60px;
-}
-
-/*
--------------------------------------------------
-NAVBAR
--------------------------------------------------
-*/
-
-
-#navbarProfileDropdown {
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-#profile-img {
-  height: 40px;
-  width: 40px
-}
-
-/*
--------------------------------------------------
-RISKLOG
--------------------------------------------------
-*/
-
-#risklog-table td {
-  font-size: 0.5rem;
 }
