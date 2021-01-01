@@ -60,6 +60,7 @@ RISKLOG
 -------------------------------------------------
 */
 
-#risklog-table td {
-  font-size: 0.5rem;
+#risklog-table .btn-sm {
+  font-size: 0.8rem;
+  margin: 1px;
 }

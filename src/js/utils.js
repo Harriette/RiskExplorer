@@ -22,7 +22,7 @@ function initRisklogTable(tableID, data) {
         { data: 'process' },
         { data: 'risk_ID',
           render: function ( data, type, row, meta ) {
-            return ('<button type="button" class="btn btn-warning btn-sm" value=' + data + '><i class="fa fa-pencil-alt" style="color: white;"></i></button>' +
+            return ('<button type="button" class="btn btn-primary btn-sm" value=' + data + '><i class="fa fa-pencil-alt" style="color: white;"></i></button>' +
               '<button type="button" class="btn btn-danger btn-sm" value=' + data + '><i class="fa fa-trash-alt"></i></button>'
             );
           }

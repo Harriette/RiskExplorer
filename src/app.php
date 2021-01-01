@@ -71,8 +71,8 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC)
                   <th rowspan="2">Actions</th>
                 <tr>
                   <th>Prob</th>
-                  <th>Severity</th>
-                  <th>Reputation</th>
+                  <th>Sev</th>
+                  <th>Rep</th>
                   <th>RAG</th>
                 </tr>
               </thead>

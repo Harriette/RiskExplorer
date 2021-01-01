@@ -1,12 +1,10 @@
 INSERT INTO companies (name)
   VALUES
-    ('Choose Company'),
     ('UK Club'),
     ('TM');
 
 INSERT INTO departments (name)
   VALUES
-    ('Choose Department'),
     ('Claims'),
     ('Underwriting'),
     ('Management'),
@@ -24,7 +22,6 @@ INSERT INTO users (user_name, password_hash, profile_ID)
 
 INSERT INTO processes (name)
   VALUES
-    ('Choose Process'),
     ('Planning'),
     ('Governance'),
     ('Resourcing'),
@@ -33,12 +30,12 @@ INSERT INTO processes (name)
     ('Work'),
     ('Communication');
 
-INSERT INTO risks (id, name, description, loss, risk_level, company_ID, department_ID, process_ID)
+INSERT INTO risks (id, name, description, loss, prob_rating, severity_rating, reputation_rating, rag_rating, risk_level, company_ID, department_ID, process_ID)
   VALUES
-    ('P1','Premium', 'Premium different to expectations.', 1, 1, 2, 1, 1),
-    ('P2','Premium volumes', 'Premium volume different to expectations.', 1, 2, 2, 1, 1),
-    ('P3','Premium adequacy', 'Premium adequacy different to expectations.', 1, 2, 2, 1, 1),
-    ('C1','Claims', 'Claims different to expectations.', 1, 1, 2, 1, 1);
+    ('P1','Premium', 'Premium different to expectations.', 1, 5, 4, 1, 4, 1, 1, 2, null),
+    ('P2','Premium volumes', 'Premium volume different to expectations.', 1, 3, 3, 3, 2, 2, 1, 2, null),
+    ('P3','Premium adequacy', 'Premium adequacy different to expectations.', 1, 5, 5, 2, 4, 2, 1, 2, null),
+    ('C1','Claims', 'Claims different to expectations.', 1, 4, 5, 3, 4, 1, 1, 1, null);
 
 INSERT INTO risklinks (riskfrom_ID, riskto_ID)
   VALUES

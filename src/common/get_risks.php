@@ -22,9 +22,9 @@ SELECT
 	created_at,
 	modified_at
 FROM risks
-		JOIN companies ON risks.company_ID = companies.company_ID
-		JOIN departments ON risks.department_ID = departments.department_ID
-		JOIN processes ON risks.process_ID = processes.process_ID
+		LEFT JOIN companies ON risks.company_ID = companies.company_ID
+		LEFT JOIN departments ON risks.department_ID = departments.department_ID
+		LEFT JOIN processes ON risks.process_ID = processes.process_ID
 WHERE is_deleted = 0;
 ";
 
