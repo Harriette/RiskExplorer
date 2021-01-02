@@ -1,5 +1,6 @@
 <?php
 session_start();
+header('Cache-Control: max-age=10');
 
 require_once 'common/DbConnect.php';
 $db = new DbConnect();
@@ -71,28 +72,31 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC)
                   <th rowspan="2">Department</th>
                   <th rowspan="2">Process</th>
                   <th rowspan="2">Actions</th>
-                <tr>
-                  <th>Prob</th>
-                  <th>Sev</th>
-                  <th>Rep</th>
-                  <th>RAG</th>
-                </tr>
-              </thead>
-              <!-- Javascript to fill the table -->
-            </table>
+                  <tr>
+                    <th>Prob</th>
+                    <th>Sev</th>
+                    <th>Rep</th>
+                    <th>RAG</th>
+                  </tr>
+                </thead>
+                <!-- Javascript to fill the table -->
+              </table>
 
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRiskModal">
-              Add new risk
-            </button>
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRiskModal">
+                Add new risk
+              </button>
 
-            <!-- Add risk modal -->
-            <?php require_once "common/risks-modal.php" ?>
+              <!-- Add risk modal -->
+              <?php require_once "common/risks-modal.php" ?>
+
+
+
+
+            </div>
 
           </div>
-
-        </div>
-        <!-- End of Risk Log -->
+          <!-- End of Risk Log -->
 
 
 
@@ -100,33 +104,32 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC)
 
 
 
-      </main>
+        </main>
+
+      </div>
 
     </div>
 
-  </div>
+  </body>
 
-</body>
-
-<script type="text/javascript">
+  <script type="text/javascript">
   $(document).ready( function () {
 
     console.log('Get company data');
-    $.getJSON('common/get_tables.php', 'table=companies', initSelector('#selectCompany') );
+    $.getJSON('common/get_tables.php', 'table=companies', initComponents('#selectCompany', '#inputCompany', '.addRisk') );
 
     console.log('Get department data');
-    $.getJSON('common/get_tables.php', 'table=departments', initSelector('#selectDepartment') );
+    $.getJSON('common/get_tables.php', 'table=departments', initComponents('#selectDepartment', '#inputDepartment', '.addRisk') );
 
     console.log('Get risk data');
     $.getJSON('common/get_risks.php', initRisklogTable('#risklog-table') );
-
 
   });
 
 </script>
 
 <script type="text/javascript">
-  // Do this *after* the table tag is rendered
+// Do this *after* the table tag is rendered
 </script>
 
 </html>

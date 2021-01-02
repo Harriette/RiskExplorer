@@ -9,7 +9,7 @@
       </div>
       <div class="modal-body">
 
-        <form class="" method="post">
+        <form class="addRisk" method="post">
           <div class="container-fluid">
 
             <div class="row">
@@ -81,16 +81,59 @@
 
             </div> <!-- End row -->
 
+            <div class="row">
 
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <label for="inputCompany" class="form-label">Company:</label>
+                  <input type="text" name="inputCompany" id="inputCompany" class="form-control" value="" placeholder="Company">
+                </div>
+              </div>
 
-            </div>
-          </form>
+              <div class="col-md-4">
+                <div class="mb-3 ui-widget">
+                  <label for="inputDepartment" class="form-label">Department:</label>
+                  <input type="text" name="inputDepartment" id="inputDepartment" class="form-control" value="" placeholder="Department">
+                </div>
+              </div>
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
+              <div class="col-md-4">
+                <div class="mb-3">
+                  <label for="inputProcess" class="form-label">Process:</label>
+                  <input type="text" name="inputProcess" id="inputProcess" class="form-control" value="" placeholder="Process">
+                </div>
+              </div>
+
+            </div> <!-- End row -->
+
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
+</div>
+
+
+
+<!--
+<script type="text/javascript">
+
+$( function() {
+  var availableDepartments = [
+    'Claims',
+    'Underwriting',
+    'Actuarial'
+  ];
+  $( "#inputDepartment" ).autocomplete({
+    source: availableDepartments,
+    appendTo: '.addRisk'
+  });
+} );
+
+</script>
+-->
