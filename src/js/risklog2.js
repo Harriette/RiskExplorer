@@ -95,7 +95,7 @@ function addRisk() {
 
   $.ajax({
     url: 'common/addRisk.php',
-    type: 'GET',
+    type: 'POST',
     data: riskData,
     cache: false,
     success: function(data) {
