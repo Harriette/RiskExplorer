@@ -90,12 +90,11 @@ function initRisklogTable(tableID, data) {
 function addRisk() {
   //alert("Adding risk");
 
-  //var riskDdata = $( '#addRiskForm' ).serialize();
-  alert('Got it');
+  var riskData = $( '#addRiskForm' ).serialize();
+  console.log(riskData);
 
-/*
   $.ajax({
-    url: 'addRisk.php',
+    url: 'common/addRisk.php',
     type: 'GET',
     data: riskData,
     cache: false,
@@ -104,5 +103,5 @@ function addRisk() {
     }
 
   });
-*/
+
 }

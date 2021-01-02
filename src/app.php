@@ -124,6 +124,11 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC)
     console.log('Get risk data');
     $.getJSON('common/get_risks.php', initRisklogTable('#risklog-table') );
 
+    $("#addRiskForm").submit(function(event){
+      addRisk();
+      return false;
+    });
+
   });
 
 </script>

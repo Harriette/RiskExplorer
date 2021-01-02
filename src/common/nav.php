@@ -26,7 +26,7 @@
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
-        <li class="nav-item navbar-text mx-5">
+        <li class="nav-item navbar-text mx-5" id="flashMessage">
           <?php require_once "common/flash_messages.php" ?>
         </li>
       </ul>
