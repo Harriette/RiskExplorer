@@ -16,6 +16,6 @@
 <script src="https://kit.fontawesome.com/9a894352cf.js" crossorigin="anonymous"></script>
 
 <!-- Link to own stylesheet and javascript -->
-<link rel="stylesheet" href="/css/custom5.css">
-<script type="text/javascript" charset="utf8" src="../js/utils1.js"></script>
+<link rel="stylesheet" href="/css/custom6.css">
+<script type="text/javascript" charset="utf8" src="../js/utils2.js"></script>
 <script type="text/javascript" charset="utf8" src="../js/risklog2.js"></script>

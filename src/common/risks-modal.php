@@ -18,7 +18,7 @@
               <div class="col-md-2">
                 <div class="mb-3">
                   <label for="inputRiskID" class="form-label">Risk ID:</label>
-                  <input type="text" name="inputRiskID" class="form-control" value="" placeholder="Risk ID">
+                  <input type="text" name="inputRiskID" id="inputRiskID" class="form-control" value="" placeholder="Risk ID">
                 </div>
               </div>
 

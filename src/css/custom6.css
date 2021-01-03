@@ -92,6 +92,6 @@ ADD RISK MODAL
 -------------------------------------------------
 */
 
-.addRisk input .error {
+.form-input-error {
   color: red;
 }

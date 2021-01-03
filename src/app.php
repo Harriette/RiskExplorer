@@ -105,13 +105,19 @@ header('Cache-Control: max-age=10');
   </body>
 
   <script type="text/javascript">
+
+  var risks;
+  var companies;
+  var departments;
+  var processes;
+
   $(document).ready( function () {
 
     console.log('Get company data');
-    $.getJSON('common/get_tables.php', 'table=companies', initComponents('#selectCompany', '#inputCompany', '.addRisk') );
+    $.getJSON('common/get_tables.php', 'table=companies', initCompanies );
 
     console.log('Get department data');
-    $.getJSON('common/get_tables.php', 'table=departments', initComponents('#selectDepartment', '#inputDepartment', '.addRisk') );
+    $.getJSON('common/get_tables.php', 'table=departments', initDepartments );
 
     console.log('Get risk data');
     $.getJSON('common/get_risks.php', initRisklogTable('#risklog-table') );
