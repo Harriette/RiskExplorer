@@ -2,14 +2,6 @@
 session_start();
 header('Cache-Control: max-age=10');
 
-require_once 'common/DbConnect.php';
-$db = new DbConnect();
-$conn = $db->connect();
-
-$sql = "SELECT * FROM risks";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$users = $stmt->fetchAll(PDO::FETCH_ASSOC)
 
 ?>
 

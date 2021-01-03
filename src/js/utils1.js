@@ -14,7 +14,9 @@ function initComponents(selectorID, autocompleteID, formClass) {
     var availableOptions = [];
 
     $.each(data, function(key, val) {
+      // Add option to selector
       selInput.append($('<option></option>').attr('value', val['name']).text(val['name']));
+      // Add option to autocomplete list
       availableOptions.push(val['name'])
     });
 
