@@ -25,7 +25,7 @@
               <div class="col-md-10">
                 <div class="mb-3">
                   <label for="inputRiskName" class="form-label">Name:</label>
-                  <input type="text" name="inputRiskName" class="form-control" value="" placeholder="Risk name">
+                  <input type="text" name="inputRiskName" id="inputRiskName" class="form-control" value="" placeholder="Risk name">
                 </div>
               </div>
             </div><!-- End row -->
@@ -62,8 +62,13 @@
 
               <div class="col-md-2">
                 <div class="mb-3">
-                  <label for="inputRagRating" class="form-label">RAG:</label>
-                  <input type="number" name="inputRagRating" class="form-control" value="" min="1" max="4">
+                  <label for="selectRagRating" class="form-label">RAG:</label>
+                  <select class="form-select" name="selectRAGRating" id="selectRAGRating" aria-label="Select RAG Rating">
+                    <option value="1">Green</option>
+                    <option value="2">Yellow</option>
+                    <option value="3">Amber</option>
+                    <option value="4">Red</option>
+                  </select>
                 </div>
               </div>
 

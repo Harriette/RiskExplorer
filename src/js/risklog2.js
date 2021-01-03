@@ -1,3 +1,19 @@
+//Helper function for JQuery to avoid values
+$.fn.avoidValues = function(json, lookIn, lookFor) {
+
+  return this.each( function() {
+    var check = json.find( item => item[lookIn] === lookFor);
+    if ( typeof(check) !== 'undefined' ) {
+      $(this).addClass('form-input-error ');
+    } else {
+      $(this).removeClass('form-input-error ');
+    }
+
+  });  // End of return
+
+}  //End of function
+
+
 
 // Helper function to initialise company based components
 // Selector in Sidebar
@@ -111,62 +127,68 @@ function initRisklogTable(tableID, data) {
           }
         },
         { name: 'company',
-        data: 'company' },
+          data: 'company' },
         { name: 'department',
-        data: 'department' },
+          data: 'department' },
         { name: 'process',
-        data: 'process' },
+          data: 'process' },
         { name: 'risk_ID',
-        data: 'risk_ID',
-        render: function ( data, type, row, meta ) {
-          return ('<button type="button" class="btn btn-primary btn-sm" value=' + data + '><i class="fa fa-pencil-alt" style="color: white;"></i></button>' +
-          '<button type="button" class="btn btn-danger btn-sm" value=' + data + '><i class="fa fa-trash-alt"></i></button>'
-        );
+          data: 'risk_ID',
+          render: function ( data, type, row, meta ) {
+            return ('<button type="button" class="btn btn-primary btn-sm" value=' + data + '><i class="fa fa-pencil-alt" style="color: white;"></i></button>' +
+            '<button type="button" class="btn btn-danger btn-sm" value=' + data + '><i class="fa fa-trash-alt"></i></button>'
+            );
+          }
+        }
+      ],
+    createdRow: function(row, data, dataIndex) {
+      switch (data['rag_rating']) {
+        case '1':
+        $(row).addClass('green')
+        break;
+        case '2':
+        $(row).addClass('yellow')
+        break;
+        case '3':
+        $(row).addClass('amber')
+        break;
+        case '4':
+        $(row).addClass('red')
+        break;
       }
     }
-  ],
-  createdRow: function(row, data, dataIndex) {
-    switch (data['rag_rating']) {
-      case '1':
-      $(row).addClass('green')
-      break;
-      case '2':
-      $(row).addClass('yellow')
-      break;
-      case '3':
-      $(row).addClass('amber')
-      break;
-      case '4':
-      $(row).addClass('red')
-      break;
-    }
-  }
-});
+  });
 
-$('#selectCompany').change(function(){
-  table.column('company:name').search( $(this).val() ).draw();
-})
+  $('#selectCompany').change(function(){
+    table.column('company:name').search( $(this).val() ).draw();
+  })
 
-$('#selectDepartment').change(function(){
-  table.column('department:name').search( $(this).val() ).draw();
-})
+  $('#selectDepartment').change(function(){
+    table.column('department:name').search( $(this).val() ).draw();
+  })
 
-// Autocomplete for risk modal
-var availableRiskIDs = [];
-$.each(data, function(key, val) {
-  availableRiskIDs.push(val['id'])
-});
+  // Autocomplete for risk modal
+  var availableRiskIDs = [];
+  var availableRiskNames = [];
+  $.each(data, function(key, val) {
+    availableRiskIDs.push(val['id']);
+    availableRiskNames.push(val['name']);
+  });
 
-$( '#inputRiskID' ).autocomplete({
-  source: availableRiskIDs,
-  appendTo: '.addRisk'
-});
+  $( '#inputRiskID' ).autocomplete({
+    source: availableRiskIDs,
+    appendTo: '.addRisk'
+  });
+  $( '#inputRiskName' ).autocomplete({
+    source: availableRiskNames,
+    appendTo: '.addRisk'
+  });
 
-//Avoid values for risk ID
-$( '#inputRiskID' ).on('change', function() {
-  $(this).avoidValues(risks, 'id', $(this).val());
-});
-
+  //Avoid values for risk ID
+  $( '#inputRiskID' ).on('change', function() {
+    $(this).val( $(this).val().toUpperCase() );
+    $(this).avoidValues(risks, 'id', $(this).val());
+  });
 
 }); //End of return
 
@@ -175,8 +197,12 @@ $( '#inputRiskID' ).on('change', function() {
 
 //Add new record to database
 function addRisk() {
-  //alert("Adding risk");
+
+  //Validate form data
   validateNewRisk();
+
+
+
 
   var riskData = $( '#addRiskForm' ).serialize();
   console.log(riskData);
@@ -200,35 +226,32 @@ function validateNewRisk() {
   console.log('Validating risks');
 
   //Check ID is filled in and it does not refer to an already used ID
-  //Get already used IDs
-  // Convert to upper case
-  testValue = $( '#inputRiskID' ).val().toUpperCase();
-  $( '#inputRiskID' ).val(testValue);
-
+  var testValue = $( '#inputRiskID' ).val();
   if (testValue === '') {
-    alert('Must enter a Risk ID!');
+    alert('Must enter a risk ID!');
     return false;
   } else {
+    //Get already used IDs
     var check = risks.find(item => item.id === testValue);
     if ( typeof(check) !== 'undefined' ){
-      alert('Cannot use an existing Risk ID!');
+      alert('Cannot use an existing risk ID!');
       return false;
     }
   }
 
+  //Check name is filled in
+  var testValue = $( '#inputRiskName' ).val();
+  if (testValue === '') {
+    alert('Must enter a risk name!');
+    return false;
+  }
+
+  //Check Company is filled in
+  var testValue = $( '#inputCompany' ).val();
+  if (testValue === '') {
+    alert('Must enter a company name!');
+    return false;
+  }
+
 
 }
-
-$.fn.avoidValues = function(json, lookIn, lookFor) {
-
-  return this.each( function() {
-    var check = json.find( item => item[lookIn] === lookFor);
-    if ( typeof(check) !== 'undefined' ) {
-      $(this).addClass('form-input-error ');
-    } else {
-      $(this).removeClass('form-input-error ');
-    }
-
-  });  // End of return
-
-}  //End of function
