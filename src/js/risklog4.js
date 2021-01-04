@@ -109,8 +109,6 @@ function initProcesses(data) {
 }
 
 
-
-
 //Return a function for the callback function of the getJSON function
 //This will initialise the risklog table
 function initRisklogTable(tableID, data) {
@@ -267,9 +265,8 @@ function addRisk() {
   //Validate form data
   if( !validateNewRisk() ) {return};
 
+  //Submit form data and then reload page if successful
   var riskData = $( '#addRiskForm' ).serialize();
-  console.log(riskData);
-
   $.ajax({
     url: '../common/addRisk.php',
     type: 'POST',

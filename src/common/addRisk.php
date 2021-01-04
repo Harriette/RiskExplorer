@@ -26,38 +26,76 @@ if (count($results) == 0) {
 }
 
 // Check if we need a new department
-$sql = "SELECT department_ID FROM departments WHERE upper(name) = :dep";
-$stmt = $conn->prepare($sql);
-$stmt->execute(array(':dep' => strtoupper($_POST['inputDepartment'])));
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if ( $_POST['inputDepartment'] !== '') {
 
-if (count($results) == 0) {
-  // Need to insert company
-  $sql = "INSERT INTO departments (name) VALUES (:dep)";
+  $sql = "SELECT department_ID FROM departments WHERE upper(name) = :dep";
   $stmt = $conn->prepare($sql);
-  $stmt->execute(array(':dep' => $_POST['inputDepartment']));
-  $department_id = $conn->lastInsertId();
-  $message .= 'Added new department. ';
+  $stmt->execute(array(':dep' => strtoupper($_POST['inputDepartment'])));
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  if (count($results) == 0) {
+    // Need to insert company
+    $sql = "INSERT INTO departments (name) VALUES (:dep)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(array(':dep' => $_POST['inputDepartment']));
+    $department_id = $conn->lastInsertId();
+    $message .= 'Added new department. ';
+  } else {
+    $department_id = $results[0]['department_ID'];
+  }
+
 } else {
-  $department_id = $results[0]['department_ID'];
+  $department_id = null;
 }
 
 // Check if we need a new process
-$sql = "SELECT process_ID FROM processes WHERE upper(name) = :pro";
-$stmt = $conn->prepare($sql);
-$stmt->execute(array(':pro' => strtoupper($_POST['inputProcess'])));
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if ( $_POST['inputProcess'] !== '') {
 
-if (count($results) == 0) {
-  // Need to insert company
-  $sql = "INSERT INTO processes (name) VALUES (:pro)";
+  $sql = "SELECT process_ID FROM processes WHERE upper(name) = :pro";
   $stmt = $conn->prepare($sql);
-  $stmt->execute(array(':pro' => $_POST['inputProcess']));
-  $process_id = $conn->lastInsertId();
-  $message .= 'Added new process. ';
+  $stmt->execute(array(':pro' => strtoupper($_POST['inputProcess'])));
+  $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  if (count($results) == 0) {
+    // Need to insert company
+    $sql = "INSERT INTO processes (name) VALUES (:pro)";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute(array(':pro' => $_POST['inputProcess']));
+    $process_id = $conn->lastInsertId();
+    $message .= 'Added new process. ';
+  } else {
+    $process_id = $results[0]['process_ID'];
+  }
+
 } else {
-  $process_id = $results[0]['process_ID'];
+  $process_id = null;
 }
 
 
-echo $process_id;
+
+// Add new risk
+$sql = "INSERT INTO risks
+          (id, name, description, loss, prob_rating, severity_rating, reputation_rating, rag_rating,
+            risk_level, company_ID, department_ID, process_ID)
+        VALUES (:id, :na, :descr, :loss, :prob, :sev, :rep, :rag,
+          :level, :co, :dep, :pro)";
+$stmt = $conn->prepare($sql);
+$stmt->execute(array(
+  ':id'    => $_POST['inputRiskID'],
+  ':na'    => $_POST['inputRiskName'],
+  ':descr' => $_POST['inputRiskDescription'],
+  ':loss'  => $_POST['inputIsLoss'] == '' ? 0 : 1,
+  ':prob'  => $_POST['inputProbRating'],
+  ':sev'   => $_POST['inputSevRating'],
+  ':rep'   => $_POST['inputRepRating'],
+  ':rag'   => $_POST['selectRAGRating'],
+  ':level' => $_POST['inputRiskLevel'],
+  ':co'    => $company_id,
+  ':dep'   => $department_id,
+  ':pro'   => $process_id
+));
+$message .= 'Added new risk. ';
+
+$_SESSION['success'] = $message;
+
+echo $message;
