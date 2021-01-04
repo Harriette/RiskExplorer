@@ -74,22 +74,17 @@ header('Cache-Control: max-age=10');
                 <!-- Javascript to fill the table -->
               </table>
 
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRiskModal">
-                Add new risk
-              </button>
+            </div><!-- End of Risk Log table -->
 
-              <!-- Add risk modal -->
-              <?php require_once "common/risks-modal.php" ?>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#addRiskModal">
+              Add new risk
+            </button>
 
+          </div><!-- End of Risk Log -->
 
-
-
-            </div>
-
-          </div>
-          <!-- End of Risk Log -->
-
+          <!-- Add risk modal -->
+          <?php require_once "common/risks-modal.php" ?>
 
 
 
@@ -125,6 +120,8 @@ header('Cache-Control: max-age=10');
       addRisk();
       return false;
     });
+
+    $("#addRiskModal").on('show.bs.modal', initRiskModal );
 
   });
 

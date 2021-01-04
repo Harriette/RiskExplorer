@@ -161,7 +161,7 @@ function initRisklogTable(tableID, data) {
         { name: 'risk_ID',
           data: 'risk_ID',
           render: function ( data, type, row, meta ) {
-            return ('<button type="button" class="btn btn-primary btn-sm" value=' + data + '><i class="fa fa-pencil-alt" style="color: white;"></i></button>' +
+            return ('<button type="button" class="btn btn-primary btn-sm" value=' + data + ' data-bs-toggle="modal" data-bs-target="#addRiskModal"><i class="fa fa-pencil-alt" style="color: white;"></i></button>' +
             '<button type="button" class="btn btn-danger btn-sm" value=' + data + '><i class="fa fa-trash-alt"></i></button>'
             );
           }
@@ -281,4 +281,29 @@ function addRisk() {
 
 
 
+}
+
+
+//Function to edit a risks
+function initRiskModal(event){
+  //Get risk ID from the value property of the button that triggered the modal
+  //null is for adding a new risk and therefore blank form
+  var riskID = event.relatedTarget.getAttribute('value');
+  if (riskID !== null) {
+    // Otherwise load data and input into cells
+    var risk = risks.find(item => item.risk_ID === riskID);
+    console.log(risk);
+    $('#inputRiskID').val(risk.id);
+    $('#inputRiskName').val(risk.name);
+    $('#inputRiskDescription').val(risk.description);
+    $('#inputProbRating').val(risk.prob_rating);
+    $('#inputSevRating').val(risk.severity_rating);
+    $('#inputRepRating').val(risk.reputation_rating);
+    $('#selectRAGRating').val(risk.rag_rating);
+    $('#inputRiskLevel').val(risk.risk_level);
+    $('#form-check-input').prop('checked', risk.loss);
+    $('#inputCompany').val(risk.company);
+    $('#inputDepartment').val(risk.department);
+    $('#inputProcess').val(risk.process);
+  }
 }

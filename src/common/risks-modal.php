@@ -33,7 +33,7 @@
             <div class="row">
               <div class="mb-3">
                 <label for="inputRiskDescription" class="form-label">Description:</label>
-                <textarea name="inputRiskDescription" class="form-control" value="" placeholder="Risk description" rows="4"></textarea>
+                <textarea name="inputRiskDescription" id="inputRiskDescription" class="form-control" value="" placeholder="Risk description" rows="4"></textarea>
               </div>
             </div><!-- End row -->
 
@@ -42,21 +42,21 @@
               <div class="col-md-2">
                 <div class="mb-3">
                   <label for="inputProbRating" class="form-label">Probability:</label>
-                  <input type="number" name="inputProbRating" class="form-control" value="" min="1" max="5">
+                  <input type="number" name="inputProbRating" id="inputProbRating" class="form-control" value="" min="1" max="5">
                 </div>
               </div>
 
               <div class="col-md-2">
                 <div class="mb-3">
                   <label for="inputSevRating" class="form-label">Severity:</label>
-                  <input type="number" name="inputSevRating" class="form-control" value="" min="1" max="5">
+                  <input type="number" name="inputSevRating" id="inputSevRating" class="form-control" value="" min="1" max="5">
                 </div>
               </div>
 
               <div class="col-md-2">
                 <div class="mb-3">
                   <label for="inputRepRating" class="form-label">Reputation:</label>
-                  <input type="number" name="inputRepRating" class="form-control" value="" min="1" max="5">
+                  <input type="number" name="inputRepRating" id="inputRepRating" class="form-control" value="" min="1" max="5">
                 </div>
               </div>
 
@@ -75,13 +75,13 @@
               <div class="col-md-2">
                 <div class="mb-3">
                   <label for="inputRiskLevel" class="form-label">Risk Level:</label>
-                  <input type="number" name="inputRiskLevel" class="form-control" value="1" min="1">
+                  <input type="number" name="inputRiskLevel" id="inputRiskLevel" class="form-control" value="1" min="1">
                 </div>
               </div>
 
               <div class="col-md-2">
                 <div class="mb-3 form-check">
-                  <input class="form-check-input" type="checkbox" value="" name="inputIsLoss">
+                  <input class="form-check-input" id="form-check-input" type="checkbox" value="" name="inputIsLoss">
                   <label class="form-check-label" for="inputIsLoss">Loss event</label>
                 </div>
               </div>
