@@ -83,6 +83,34 @@ function initDepartments(data) {
 }
 
 
+//Helper function to initialise selectors
+// Selector in Sidebar
+// Input autocomplete in Add Risks Modal
+function initProcesses(data) {
+
+  // Store in global variable
+  processes = data;
+
+  // Initialise options for autocomplete in risks modal
+  var availableOptions = [];
+
+  // Loop though array adding options
+  $.each(data, function(key, val) {
+    // Add option to autocomplete list
+    availableOptions.push(val['name'])
+  });
+
+  // Initialise options for autocomplete in risks modal
+  $( '#inputProcess' ).autocomplete({
+    source: availableOptions,
+    appendTo: '.addRisk'
+  });
+
+}
+
+
+
+
 //Return a function for the callback function of the getJSON function
 //This will initialise the risklog table
 function initRisklogTable(tableID, data) {
@@ -237,36 +265,13 @@ function validateNewRisk() {
 function addRisk() {
 
   //Validate form data
-  console.log(validateNewRisk());
-  return;
-  
-  // If the Company is new add it first and then set the correct Company_ID
-  var check = risks.find( risk => risk.company.toUpperCase() === $('#inputCompany').val().toUpperCase() );
-  if ( typeof(check) === 'undefined' ) {
-    // Didn't find comany in table, therefore add it
-    $.ajax({
-      url: '../common/addCompany.php',
-      type: 'POST',
-      data: 'name=' + $('#inputCompany').val(),
-      cache: false,
-      success: function(data) {
-        console.log(data);
-      }
-
-    });
-
-  }
-
-  // If the Department is new add it first
-
-  // If the Process is new add it first
-
+  if( !validateNewRisk() ) {return};
 
   var riskData = $( '#addRiskForm' ).serialize();
   console.log(riskData);
 
   $.ajax({
-    url: 'common/addRisk.php',
+    url: '../common/addRisk.php',
     type: 'POST',
     data: riskData,
     cache: false,

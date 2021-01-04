@@ -11,6 +11,9 @@ switch ($_GET['table']) {
   case 'departments':
     $sql = "SELECT * FROM departments";
     break;
+  case 'processes':
+    $sql = "SELECT * FROM processes";
+    break;
 }
 
 $stmt = $conn->prepare($sql);

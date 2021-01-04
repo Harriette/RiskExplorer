@@ -117,6 +117,8 @@ header('Cache-Control: max-age=10');
 
     $.getJSON('common/get_tables.php', 'table=departments', initDepartments );
 
+    $.getJSON('common/get_tables.php', 'table=processes', initProcesses );
+
     $.getJSON('common/get_risks.php', initRisklogTable('#risklog-table') );
 
     $("#addRiskForm").submit(function(event){
