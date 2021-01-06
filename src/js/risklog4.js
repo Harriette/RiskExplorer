@@ -222,7 +222,7 @@ function initRisklogTable(tableID, data) {
 
 
 //Function to validate a new risk
-function validateNewRisk() {
+function validateRisk() {
 
   console.log('Validating risks');
 
@@ -231,7 +231,8 @@ function validateNewRisk() {
   if (testValue === '') {
     alert('Must enter a risk ID!');
     return false;
-  } else {
+  } else if ( $('#addRiskForm').hasClass('new-risk') ) {
+    //If it is filled in and entering a new risk, then it cant repear risk ID
     //Get already used IDs
     var check = risks.find(item => item.id === testValue);
     if ( typeof(check) !== 'undefined' ){
@@ -263,7 +264,7 @@ function validateNewRisk() {
 function addRisk() {
 
   //Validate form data
-  if( !validateNewRisk() ) {return};
+  if( !validateRisk() ) {return};
 
   //Submit form data and then reload page if successful
   var riskData = $( '#addRiskForm' ).serialize();
@@ -305,5 +306,9 @@ function initRiskModal(event){
     $('#inputCompany').val(risk.company);
     $('#inputDepartment').val(risk.department);
     $('#inputProcess').val(risk.process);
+
+    $('#addRiskForm').addClass('edit-risk')
+  } else {
+    $('#addRiskForm').addClass('new-risk')
   }
 }
