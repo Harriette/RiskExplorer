@@ -275,13 +275,25 @@ function addRisk() {
     cache: false,
     success: function(data) {
       location.reload()
-
     }
-
   });
+}
 
 
+//Function to delete a risk
+function deleteRisk() {
 
+  //Submit form data and then reload page if successful
+  $.ajax({
+    url: '../common/deleteRisk.php',
+    type: 'POST',
+    data: 'id=' + $( '#deleteRiskID' ).html(),
+    cache: false,
+    success: function(data) {
+      //location.reload()
+      console.log(data);
+    }
+  });
 }
 
 
@@ -318,7 +330,6 @@ function initDeleteRiskModal(event){
   //Get risk ID from the value property of the button that triggered the modal
   //null is for adding a new risk and therefore blank form
   var riskID = event.relatedTarget.getAttribute('value');
-  console.log(riskID);
   if (riskID !== null) {
     // Otherwise load data and input into cells
     var risk = risks.find(item => item.risk_ID === riskID);

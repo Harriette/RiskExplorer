@@ -121,7 +121,14 @@ header('Cache-Control: max-age=10');
       return false;
     });
 
+    $("#deleteRiskForm").submit(function(event){
+      deleteRisk();
+      return false;
+    });
+
     $("#addRiskModal").on('show.bs.modal', initRiskModal );
+
+    $("#deleteRiskModal").on('show.bs.modal', initDeleteRiskModal );
 
   });
 

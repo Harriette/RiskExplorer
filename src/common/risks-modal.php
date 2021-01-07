@@ -131,7 +131,7 @@
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="deleteRiskLabel">Delete risk</h5>
+        <h5 class="modal-title" id="deleteRiskLabel">Are you sure you wish to delete this risk?</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -140,8 +140,16 @@
         <div class="modal-body">
 
           <div class="container-fluid">
-
-
+            <div class="row">
+              <div class="col-md-3">
+                <p><strong>Risk ID:    </strong></p>
+                <p><strong>Risk Name:  </strong></p>
+              </div>
+              <div class="col-md-9">
+                <p id="deleteRiskID"></p>
+                <p id="deleteRiskName"></p>
+              </div>
+            </div>
           </div>
 
         </div>
