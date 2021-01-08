@@ -274,7 +274,7 @@ function addRisk() {
     data: riskData,
     cache: false,
     success: function(data) {
-      location.reload()
+      location.reload(true)
     }
   });
 }
@@ -283,15 +283,14 @@ function addRisk() {
 //Function to delete a risk
 function deleteRisk() {
 
-  //Submit form data and then reload page if successful
+    //Submit form data and then reload page if successful
   $.ajax({
     url: '../common/deleteRisk.php',
     type: 'POST',
-    data: 'id=' + $( '#deleteRiskID' ).html(),
+    data: 'id=' + $('#deleteRiskButton').val(),
     cache: false,
     success: function(data) {
-      //location.reload()
-      console.log(data);
+      location.reload(true)
     }
   });
 }
@@ -333,8 +332,8 @@ function initDeleteRiskModal(event){
   if (riskID !== null) {
     // Otherwise load data and input into cells
     var risk = risks.find(item => item.risk_ID === riskID);
-    console.log(risk);
     $('#deleteRiskID').html(risk.id);
     $('#deleteRiskName').html(risk.name);
+    $('#deleteRiskButton').val(risk.risk_ID);
   }
 }

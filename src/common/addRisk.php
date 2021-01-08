@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 
 // If mandatory fields are set proceed
 require_once 'DbConnect.php';
