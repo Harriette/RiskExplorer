@@ -95,3 +95,18 @@ ADD RISK MODAL
 .form-input-error {
   color: red;
 }
+
+/*
+-------------------------------------------------
+RISKMAP
+-------------------------------------------------
+*/
+
+#riskmap_graph {
+  width: 500px;
+  height: 500px
+}
+
+text {
+  font-size: 2em;
+}

@@ -15,7 +15,11 @@
 <!-- Font Awesome -->
 <script src="https://kit.fontawesome.com/9a894352cf.js" crossorigin="anonymous"></script>
 
+<!-- d3 -->
+<script src="https://d3js.org/d3.v6.min.js"></script>
+
+
 <!-- Link to own stylesheet and javascript -->
-<link rel="stylesheet" href="/css/custom6.css">
+<link rel="stylesheet" href="/css/custom7.css">
 <script type="text/javascript" charset="utf8" src="../js/utils2.js"></script>
 <script type="text/javascript" charset="utf8" src="../js/risklog6.js"></script>
