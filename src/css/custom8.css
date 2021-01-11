@@ -107,6 +107,11 @@ RISKMAP
   height: 500px
 }
 
+.axis-title {
+  fill: #999999;
+}
+
 text {
   font-size: 2em;
+  fill: #999999;
 }

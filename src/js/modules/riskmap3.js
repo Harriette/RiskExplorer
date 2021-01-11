@@ -2,12 +2,14 @@ import { rag_ratings } from './riskLevels2.js';
 import { risks } from './risks.js';
 
 const xValue = d => d.severity_rating;
+const xAxisTitle = 'Severity Rating';
 const yValue = d => d.prob_rating;
+const yAxisTitle = 'Probability Rating';
 const colValue = d => d.rag_rating;
 
 var plot = d3.select('#riskmap_graph')
 
-var margin = {top: 80, right: 25, bottom: 30, left: 40};
+var margin = {top: 80, right: 10, bottom: 60, left: 60};
 var width = +plot.style('width').slice(0, -2) - margin.left - margin.right;
 var height = +plot.style('height').slice(0, -2) - margin.top - margin.bottom;
 
@@ -25,16 +27,34 @@ const colScale = d3.scaleOrdinal()
 .domain(rag_ratings.map(colValue))
 .range(['#96ff96', '#fbff96', '#ffd596', '#ff9696']);
 
-plot = plot.append('svg')
-.style('width', '100%')
-.style('height', '100%')
+const xAxis = d3.axisBottom(xScale)
+const yAxis = d3.axisLeft(yScale)
 
+plot = plot.append('svg')
+  .style('width', '100%')
+  .style('height', '100%')
 const plotArea = plot.append('g')
     .attr('transform', `translate(${margin.left}, ${margin.top} )`);
 
-plotArea.append('g').call(d3.axisLeft(yScale));
-plotArea.append('g').call(d3.axisBottom(xScale))
+const yAxisGroup = plotArea.append('g').call(yAxis);
+const xAxisGroup = plotArea.append('g').call(xAxis)
   .attr('transform', `translate(0, ${height})`);
+
+xAxisGroup.selectAll('.domain, .tick line').remove()
+yAxisGroup.selectAll('.domain, .tick line').remove()
+
+xAxisGroup.append('text')
+  .attr('class', 'axis-title')
+  .attr('x', width/2)
+  .attr('y', 50)
+  .text(xAxisTitle)
+yAxisGroup.append('text')
+  .attr('class', 'axis-title')
+  .attr('text-anchor', 'middle')
+  .attr('transform', 'rotate(270)')
+  .attr('x', -height/2)
+  .attr('y', -40)
+  .text(yAxisTitle)
 
 var rects = plotArea.append('g').selectAll('rect')
   .data(rag_ratings)
