@@ -150,6 +150,6 @@ header('Cache-Control: max-age=10');
 
 <!-- Load color palettes -->
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-<script type="module" src="js/modules/riskmap2.js"></script>
+<script type="module" src="js/modules/riskmap3.js"></script>
 
 </html>
