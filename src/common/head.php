@@ -22,4 +22,10 @@
 <!-- Link to own stylesheet and javascript -->
 <link rel="stylesheet" href="/css/custom8.css">
 <script type="text/javascript" charset="utf8" src="../js/utils2.js"></script>
-<script type="text/javascript" charset="utf8" src="../js/risklog6.js"></script>
+
+<!--
+<script type="module" charset="utf8" src="../js/risklog7.js"></script>
+<script type="module" src="js/modules/riskmap3.js"></script>
+
+
+-->

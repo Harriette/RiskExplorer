@@ -1,3 +1,6 @@
+import { renderRiskMap } from './modules/riskmap3.js';
+
+
 //Helper function for JQuery to avoid values
 $.fn.avoidValues = function(json, lookIn, lookFor) {
 
@@ -18,7 +21,7 @@ $.fn.avoidValues = function(json, lookIn, lookFor) {
 // Helper function to initialise company based components
 // Selector in Sidebar
 // Input autocomplete in Add Risks Modal
-function initCompanies(data) {
+export function initCompanies(companies, data) {
 
   // Store in global variable
   companies = data;
@@ -52,7 +55,7 @@ function initCompanies(data) {
 //Helper function to initialise selectors
 // Selector in Sidebar
 // Input autocomplete in Add Risks Modal
-function initDepartments(data) {
+export function initDepartments(departments, data) {
 
   // Store in global variable
   departments = data;
@@ -86,7 +89,7 @@ function initDepartments(data) {
 //Helper function to initialise selectors
 // Selector in Sidebar
 // Input autocomplete in Add Risks Modal
-function initProcesses(data) {
+export function initProcesses(processes, data) {
 
   // Store in global variable
   processes = data;
@@ -111,7 +114,7 @@ function initProcesses(data) {
 
 //Return a function for the callback function of the getJSON function
 //This will initialise the risklog table
-function initRisklogTable(tableID, data) {
+export function initRisklogTable(tableID, risks, data) {
 
   return ( function(data) {
 
@@ -216,6 +219,9 @@ function initRisklogTable(tableID, data) {
     $(this).avoidValues(risks, 'id', $(this).val());
   });
 
+  //Create risk map
+  renderRiskMap(risks);
+
 }); //End of return
 
 }
@@ -297,7 +303,7 @@ function deleteRisk() {
 
 
 //Function to edit a risks
-function initRiskModal(event){
+export function initRiskModal(event){
   //Get risk ID from the value property of the button that triggered the modal
   //null is for adding a new risk and therefore blank form
   var riskID = event.relatedTarget.getAttribute('value');
@@ -325,7 +331,7 @@ function initRiskModal(event){
 }
 
 //Function to edit a risks
-function initDeleteRiskModal(event){
+export function initDeleteRiskModal(event){
   //Get risk ID from the value property of the button that triggered the modal
   //null is for adding a new risk and therefore blank form
   var riskID = event.relatedTarget.getAttribute('value');

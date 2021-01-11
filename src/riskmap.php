@@ -113,7 +113,17 @@ header('Cache-Control: max-age=10');
 
   </body>
 
-  <script type="text/javascript">
+  <script type="module">
+
+  import {
+    initCompanies,
+    initDepartments,
+    initProcesses,
+    initRisklogTable,
+    initRiskModal,
+    initDeleteRiskModal
+  }
+    from './js/risklog7.js';
 
   var risks;
   var companies;
@@ -122,13 +132,13 @@ header('Cache-Control: max-age=10');
 
   $(document).ready( function () {
 
-    $.getJSON('common/get_tables.php', 'table=companies', initCompanies );
+    $.getJSON('common/get_tables.php', 'table=companies', initCompanies(companies) );
 
-    $.getJSON('common/get_tables.php', 'table=departments', initDepartments );
+    $.getJSON('common/get_tables.php', 'table=departments', initDepartments(departments) );
 
-    $.getJSON('common/get_tables.php', 'table=processes', initProcesses );
+    $.getJSON('common/get_tables.php', 'table=processes', initProcesses(processes) );
 
-    $.getJSON('common/get_risks.php', initRisklogTable('#risklog-table') );
+    $.getJSON('common/get_risks.php', initRisklogTable('#risklog-table', risks) );
 
     $("#addRiskForm").submit(function(event){
       addRisk();
@@ -150,6 +160,5 @@ header('Cache-Control: max-age=10');
 
 <!-- Load color palettes -->
 <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-<script type="module" src="js/modules/riskmap3.js"></script>
 
 </html>
