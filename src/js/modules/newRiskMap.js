@@ -25,15 +25,15 @@ const setupPlot = (selection, props) => {
   // Define scales
   scales = {
     x: d3.scaleBand()
-      .domain(rag_ratings.map(aes.xValue))
+      .domain(rag_ratings.map(d => d[aes.xValue]))
       .range([0, width])
       .padding(0.03),
     y: d3.scaleBand()
-      .domain(rag_ratings.map(aes.yValue))
+      .domain(rag_ratings.map(d => d[aes.yValue]))
       .range([height, 0])
       .padding(0.03),
     col: d3.scaleOrdinal()
-      .domain(rag_ratings.map(aes.colValue))
+      .domain(rag_ratings.map(d => d[aes.colValue]))
       .range(['#96ff96', '#fbff96', '#ffd596', '#ff9696'])
   }
 
@@ -65,11 +65,11 @@ const setupPlot = (selection, props) => {
     .selectAll('rect')
     .data(rag_ratings)
     .join('rect')
-      .attr('x', d => scales.x(aes.xValue(d)))
-      .attr('y', d => scales.y(aes.yValue(d)))
+      .attr('x', d => scales.x(d[aes.xValue]))
+      .attr('y', d => scales.y(d[aes.yValue]))
       .attr('width', scales.x.bandwidth())
       .attr('height', scales.y.bandwidth())
-      .attr('fill', d => scales.col(aes.colValue(d)))
+      .attr('fill', d => scales.col(d[aes.colValue]))
       .attr('rx', height*0.02);
 
 }
@@ -89,8 +89,8 @@ export const riskMap = (selection, props) => {
     .selectAll('circle')
       .data(risks)
       .join('circle')
-      .attr('cx', d => scales.x(aes.xValue(d)) + scales.x.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)()) )
-      .attr('cy', d => scales.y(aes.yValue(d)) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)()) )
+      .attr('cx', d => scales.x(d[aes.xValue]) + scales.x.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)()) )
+      .attr('cy', d => scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)()) )
       .attr('r', 0.1 * scales.x.bandwidth() );
 
 

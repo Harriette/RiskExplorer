@@ -11,9 +11,9 @@ getAllRiskTables().then(
       d3.select('#riskmap_graph'),
       {
         aes: {
-          xValue: d => d.severity_rating,
-          yValue: d => d.prob_rating,
-          colValue: d => d.rag_rating
+          xValue: 'severity_rating',
+          yValue: 'prob_rating',
+          colValue: 'rag_rating'
         },
         titles: {
           main: 'Main',
