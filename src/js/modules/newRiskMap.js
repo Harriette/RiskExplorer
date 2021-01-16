@@ -2,7 +2,7 @@
 var margin = {top: 80, right: 10, bottom: 60, left: 60};
 var width, height;
 var scales;
-var plot, plotArea;
+var plot, plotArea, rects, points;
 
 // Set up the background for the plot
 const setupPlot = (selection, props) => {
@@ -60,7 +60,7 @@ const setupPlot = (selection, props) => {
     .text(titles.xAxis)
 
   // Plot rectangular areas for background of plot
-  var rects = plotArea.append('g')
+  rects = plotArea.append('g')
       .attr('id', 'riskmap-rects')
     .selectAll('rect')
     .data(rag_ratings)
@@ -74,6 +74,20 @@ const setupPlot = (selection, props) => {
 
 }
 
+const renderRisks = (selection, { aes, risks }) => {
+
+  points = selection.append('g')
+      .attr('fill-opacity', 0.4)
+    .selectAll('circle')
+      .data(risks)
+      .join('circle')
+      .attr('cx', d => scales.x(d[aes.xValue]) + scales.x.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)()) )
+      .attr('cy', d => scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)()) )
+      .attr('r', 0.1 * scales.x.bandwidth() );
+
+}
+
+
 
 // Plot the riskMap
 export const riskMap = (selection, props) => {
@@ -84,14 +98,6 @@ export const riskMap = (selection, props) => {
   setupPlot(selection, {aes, titles, rag_ratings});
 
   // Plot risk points
-  var points = plotArea.append('g')
-      .attr('fill-opacity', 0.4)
-    .selectAll('circle')
-      .data(risks)
-      .join('circle')
-      .attr('cx', d => scales.x(d[aes.xValue]) + scales.x.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)()) )
-      .attr('cy', d => scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)()) )
-      .attr('r', 0.1 * scales.x.bandwidth() );
-
+  renderRisks(plotArea, {aes, risks});
 
 }

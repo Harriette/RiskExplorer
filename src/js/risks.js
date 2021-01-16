@@ -17,8 +17,8 @@ getAllRiskTables().then(
         },
         titles: {
           main: 'Main',
-          xAxis: 'X Axis',
-          yAxis: 'Y Axis'
+          xAxis: 'Severity Rating',
+          yAxis: 'Probability Rating'
         },
         rag_ratings: rag_ratings,
         risks: risks
