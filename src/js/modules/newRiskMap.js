@@ -74,16 +74,29 @@ const setupPlot = (selection, props) => {
 
 }
 
+// Render the risk points
 const renderRisks = (selection, { aes, risks }) => {
+
+  const t = plotArea.transition().duration(500);
 
   points = selection.append('g')
       .attr('fill-opacity', 0.4)
     .selectAll('circle')
-      .data(risks)
-      .join('circle')
+    .data(risks, d => d.id)
+    .join(
+      enter => enter.append('circle')
+        .attr('r', 0)
+      .call(enter => enter.transition(t)
+        .attr('r', 0.1 * scales.x.bandwidth() )
+      )
+    )
       .attr('cx', d => scales.x(d[aes.xValue]) + scales.x.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)()) )
-      .attr('cy', d => scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)()) )
-      .attr('r', 0.1 * scales.x.bandwidth() );
+      .attr('cy', d => scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)()) );
+
+  points.append('text')
+      .text('R1');
+  points.append('title')
+      .text(d => d.name);
 
 }
 

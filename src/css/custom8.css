@@ -115,3 +115,7 @@ text {
   font-size: 2em;
   fill: #999999;
 }
+
+circle:hover {
+  fill: white;
+}
