@@ -2,7 +2,7 @@
 var margin = {top: 80, right: 10, bottom: 60, left: 60};
 var width, height;
 var scales;
-var plot, plotArea, rects, points;
+var plot, plotArea, rects, riskPoints;
 
 // Set up the background for the plot
 const setupPlot = (selection, props) => {
@@ -79,23 +79,26 @@ const renderRisks = (selection, { aes, risks }) => {
 
   const t = plotArea.transition().duration(500);
 
-  points = selection.append('g')
-      .attr('fill-opacity', 0.4)
-    .selectAll('circle')
-    .data(risks, d => d.id)
-    .join(
-      enter => enter.append('circle')
-        .attr('r', 0)
-      .call(enter => enter.transition(t)
-        .attr('r', 0.1 * scales.x.bandwidth() )
-      )
-    )
-      .attr('cx', d => scales.x(d[aes.xValue]) + scales.x.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)()) )
-      .attr('cy', d => scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)()) );
 
-  points.append('text')
-      .text('R1');
-  points.append('title')
+  riskPoints = selection.append('g')
+      .attr('fill-opacity', 0.4)
+    .selectAll('g')
+    .data(risks, d => d.id)
+    .join('g')
+      .attr('transform', d => `translate(${
+        scales.x(d[aes.xValue]) + scales.x.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)())
+      }, ${
+        scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)())
+      })`);
+
+  riskPoints.append('circle')
+      .attr('r', 0.1 * scales.x.bandwidth() );
+  riskPoints.append('text')
+      .text(d => d.id)
+      .attr('text-anchor', 'middle')
+      .attr('y', '0.32em')
+      .attr('class', 'risk-points');
+  riskPoints.append('title')
       .text(d => d.name);
 
 }

@@ -111,6 +111,12 @@ RISKMAP
   fill: #999999;
 }
 
+.risk-points {
+  font-size: 0.6em;
+  fill: #ffffff;
+  fill-opacity: 1;
+}
+
 text {
   font-size: 2em;
   fill: #999999;
