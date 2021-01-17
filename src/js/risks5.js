@@ -1,8 +1,8 @@
 import { getAllRiskTables } from  './modules/getAllRiskTables.js'
 import { rag_ratings } from './modules/riskLevels2.js';
-import { setupRiskMap, renderRisks } from './modules/newRiskMap2.js'
+import { setupRiskMap, renderRisks } from './modules/newRiskMap4.js'
 
-
+console.log( $('#riskmap_graph').width() );
 
 const render = ({risks}) => {
 
@@ -43,20 +43,16 @@ getAllRiskTables().then(
     );
     render({risks});
 
-    console.log(risks);
-
 
     //After 2 seconds remove a risk and see what happens
     setTimeout(() => {
       risks.pop();
-      console.log(risks);
       render({risks});
     }, 2000)
 
     //After 3 seconds remove a risk and see what happens
     setTimeout(() => {
       risks[1].prob_rating = "1";
-      console.log(risks);
       render({risks});
     }, 3000)
 

@@ -44,20 +44,28 @@ header('Cache-Control: max-age=10');
       <!-- Main -->
       <main class="col-md-9 col-lg-10 ms-sm-auto px-md-4">
 
-        <!-- Risk Map -->
-        <div class="container" id="riskmap">
+        <!-- Risk Map Section-->
+        <div class="row" id="riskmap">
 
-          <h1>Risk Map</h1>
+            <h1>Risk Map</h1>
 
-            <div class="container p-0" id="riskmap_graph">
+            <!-- Risk Map Graph on left of screen -->
+            <div class="col-6 p-0">
+              <div class="ratio ratio-1x1" id="riskmap_graph">
+              </div>
+            </div>
 
+            <!-- Risk Details Panel -->
+            <div class="col-6" id="risk_details_panel">
+              <h2>Risks Details</h2>
             </div>
 
         </div>
 
 
+
         <!-- Risk Log -->
-        <div class="" id="page-risklog">
+        <div class="row" id="page-risklog">
 
           <h1>Risk Log</h1>
 
@@ -104,14 +112,14 @@ header('Cache-Control: max-age=10');
 
 
 
-        </main>
-
-      </div>
+      </main>
 
     </div>
 
-  </body>
+  </div>
 
-  <script type="module" src="js/risks2.js"></script>
+</body>
+
+<script type="module" src="js/risks5.js"></script>
 
 </html>

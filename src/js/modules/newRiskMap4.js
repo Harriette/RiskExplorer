@@ -1,5 +1,5 @@
 // Declare variables to use for plot
-var margin = {top: 80, right: 10, bottom: 60, left: 60};
+var margin = {top: 10, right: 10, bottom: 60, left: 60};
 var width, height;
 var scales;
 var plot, plotArea, rects, riskPoints;
@@ -9,10 +9,10 @@ export const setupRiskMap = (selection, props) => {
 
   const {aes, titles, rag_ratings} = props;
 
+
   // Define sizes
   width = +selection.style('width').slice(0, -2) - margin.left - margin.right;
   height = +selection.style('height').slice(0, -2) - margin.top - margin.bottom;
-
   //Set up blank canvas with plot and plotArea
   plot = selection.append('svg')
       .style('width', '100%')
