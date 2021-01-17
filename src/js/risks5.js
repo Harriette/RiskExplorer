@@ -1,6 +1,7 @@
 import { getAllRiskTables } from  './modules/getAllRiskTables.js'
 import { rag_ratings } from './modules/riskLevels2.js';
 import { setupRiskMap, renderRisks } from './modules/newRiskMap4.js'
+import { setupRiskDetailsPanel } from './modules/riskDetailsPanel.js'
 
 console.log( $('#riskmap_graph').width() );
 
@@ -42,6 +43,10 @@ getAllRiskTables().then(
       }
     );
     render({risks});
+    setupRiskDetailsPanel(
+      d3.select('#risk_details_panel'),
+      {risks}
+    )
 
 
     //After 2 seconds remove a risk and see what happens

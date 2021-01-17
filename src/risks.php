@@ -58,6 +58,7 @@ header('Cache-Control: max-age=10');
             <!-- Risk Details Panel -->
             <div class="col-6" id="risk_details_panel">
               <h2>Risks Details</h2>
+              <!--Add table in javascript-->
             </div>
 
         </div>
