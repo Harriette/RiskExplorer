@@ -5,7 +5,7 @@ var scales;
 var plot, plotArea, rects, riskPoints;
 
 // Set up the background for the plot
-const setupPlot = (selection, props) => {
+export const setupRiskMap = (selection, props) => {
 
   const {aes, titles, rag_ratings} = props;
 
@@ -72,18 +72,24 @@ const setupPlot = (selection, props) => {
       .attr('fill', d => scales.col(d[aes.colValue]))
       .attr('rx', height*0.02);
 
+      // Plot rectangular areas for background of plot
+      riskPoints = plotArea.append('g')
+          .attr('id', 'riskmap-points')
+          .attr('fill-opacity', 0.4)
+
+
 }
 
 // Render the risk points
-const renderRisks = (selection, { aes, risks }) => {
+export const renderRisks = (selection, { aes, risks }) => {
 
   const t = plotArea.transition().duration(500);
 
-  riskPoints = selection.append('g')
-      .attr('fill-opacity', 0.4)
+  riskPoints = d3.select('#riskmap-points')
     .selectAll('g')
     .data(risks, d => d.id)
     .join(enter => {
+        //Append a group to hold risk points and set at lowest risk then animate to real position
         let riskPoint = enter.append('g')
             .attr('transform', d => `translate(${ scales.x(1) }, ${ scales.y(1) })`)
           .call(enter => enter.transition(t)
@@ -93,6 +99,7 @@ const renderRisks = (selection, { aes, risks }) => {
                 scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)())
               })`)
           );
+        // Each point consists of a circle, some text and a title
         riskPoint.append('circle')
             .attr('r', 0 )
           .call(enter => enter.transition(t).attr('r', 0.1 * scales.x.bandwidth() ));
@@ -104,22 +111,15 @@ const renderRisks = (selection, { aes, risks }) => {
         riskPoint.append('title')
             .text(d => d.name);
         return riskPoint
-      }
+      },
+      update => update,
+      exit => exit.remove()
     )
-
-}
-
-
-
-// Plot the riskMap
-export const riskMap = (selection, props) => {
-
-  const {aes, titles, rag_ratings, risks} = props;
-
-  //Set up the plot background
-  setupPlot(selection, {aes, titles, rag_ratings});
-
-  // Plot risk points
-  renderRisks(plotArea, {aes, risks});
+      .transition(t)
+      .attr('transform', d => `translate(${
+        scales.x(d[aes.xValue]) + scales.x.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)())
+      }, ${
+        scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)())
+      })`)
 
 }
