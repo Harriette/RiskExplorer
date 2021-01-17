@@ -1,6 +1,6 @@
 import { getAllRiskTables } from  './modules/getAllRiskTables.js'
 import { rag_ratings } from './modules/riskLevels2.js';
-import { riskMap } from './modules/newRiskMap.js'
+import { riskMap } from './modules/newRiskMap2.js'
 
 getAllRiskTables().then(
   ([companies, departments, processes, risks]) => {

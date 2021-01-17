@@ -84,22 +84,26 @@ const renderRisks = (selection, { aes, risks }) => {
       .attr('fill-opacity', 0.4)
     .selectAll('g')
     .data(risks, d => d.id)
-    .join('g')
+    .join(enter => {
+        let riskPoint = enter.append('g')
+        riskPoint.append('circle')
+            .attr('r', 0.1 * scales.x.bandwidth() );
+        riskPoint.append('text')
+            .text(d => d.id)
+            .attr('text-anchor', 'middle')
+            .attr('y', '0.32em')
+            .attr('class', 'risk-points');
+        riskPoint.append('title')
+            .text(d => d.name);
+        return riskPoint
+      }
+    )
       .attr('transform', d => `translate(${
         scales.x(d[aes.xValue]) + scales.x.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)())
       }, ${
         scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)())
       })`);
 
-  riskPoints.append('circle')
-      .attr('r', 0.1 * scales.x.bandwidth() );
-  riskPoints.append('text')
-      .text(d => d.id)
-      .attr('text-anchor', 'middle')
-      .attr('y', '0.32em')
-      .attr('class', 'risk-points');
-  riskPoints.append('title')
-      .text(d => d.name);
 
 }
 
