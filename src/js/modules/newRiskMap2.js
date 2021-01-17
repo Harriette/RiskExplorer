@@ -79,15 +79,23 @@ const renderRisks = (selection, { aes, risks }) => {
 
   const t = plotArea.transition().duration(500);
 
-
   riskPoints = selection.append('g')
       .attr('fill-opacity', 0.4)
     .selectAll('g')
     .data(risks, d => d.id)
     .join(enter => {
         let riskPoint = enter.append('g')
+            .attr('transform', d => `translate(${ scales.x(1) }, ${ scales.y(1) })`)
+          .call(enter => enter.transition(t)
+              .attr('transform', d => `translate(${
+                scales.x(d[aes.xValue]) + scales.x.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)())
+              }, ${
+                scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)())
+              })`)
+          );
         riskPoint.append('circle')
-            .attr('r', 0.1 * scales.x.bandwidth() );
+            .attr('r', 0 )
+          .call(enter => enter.transition(t).attr('r', 0.1 * scales.x.bandwidth() ));
         riskPoint.append('text')
             .text(d => d.id)
             .attr('text-anchor', 'middle')
@@ -98,12 +106,6 @@ const renderRisks = (selection, { aes, risks }) => {
         return riskPoint
       }
     )
-      .attr('transform', d => `translate(${
-        scales.x(d[aes.xValue]) + scales.x.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)())
-      }, ${
-        scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)())
-      })`);
-
 
 }
 
