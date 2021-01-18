@@ -58,6 +58,20 @@ header('Cache-Control: max-age=10');
             <!-- Risk Details Panel -->
             <div class="col-6" id="risk_details_panel">
               <h2>Risks Details</h2>
+                <table class="table table-sm table-striped" id="risk_details_table">
+                  <tr><th>ID</th><td id="risk-details-id"></td></tr>
+                  <tr><th>Name</th><td id="risk-details-name"></td></tr>
+                  <tr><th>Description</th><td id="risk-details-description"></td></tr>
+                  <tr><th>Probability Rating</th><td id="risk-details-prob_rating"></td></tr>
+                  <tr><th>Severity Rating</th><td id="risk-details-severity_rating"></td></tr>
+                  <tr><th>Reputation Rating</th><td id="risk-details-reputation_rating"></td></tr>
+                  <tr><th>RAG Rating</th><td id="risk-details-rag_rating"></td></tr>
+                  <tr><th>Loss</th><td id="risk-details-loss"></td></tr>
+                  <tr><th>Level</th><td id="risk-details-risk_level"></td></tr>
+                  <tr><th>Company</th><td id="risk-details-company"></td></tr>
+                  <tr><th>Department</th><td id="risk-details-department"></td></tr>
+                  <tr><th>Process</th><td id="risk-details-process"></td></tr>
+                </table>
               <!--Add table in javascript-->
             </div>
 
@@ -121,6 +135,6 @@ header('Cache-Control: max-age=10');
 
 </body>
 
-<script type="module" src="js/risks5.js"></script>
+<script type="module" src="js/risks7.js"></script>
 
 </html>

@@ -116,6 +116,7 @@ RISKMAP
   font-size: 0.6em;
   fill: #ffffff;
   fill-opacity: 1;
+  pointer-events: none;
 }
 
 text {

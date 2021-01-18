@@ -1,9 +1,14 @@
-import { getAllRiskTables } from  './modules/getAllRiskTables.js'
+import { getAllRiskTables } from  './modules/getAllRiskTables2.js'
 import { rag_ratings } from './modules/riskLevels2.js';
 import { setupRiskMap, renderRisks } from './modules/newRiskMap4.js'
-import { setupRiskDetailsPanel } from './modules/riskDetailsPanel.js'
+import { renderRiskDetailsPanel } from './modules/riskDetailsPanel2.js'
 
-console.log( $('#riskmap_graph').width() );
+var selectedRiskPoint = null;
+
+const onClickRiskPoint = (risks, id) => {
+  selectedRiskPoint = id;
+  render({risks})
+};
 
 const render = ({risks}) => {
 
@@ -15,7 +20,17 @@ const render = ({risks}) => {
         yValue: 'prob_rating',
         colValue: 'rag_rating'
       },
-      risks: risks
+      risks: risks,
+      onClick: onClickRiskPoint,
+      selectedRiskPoint: selectedRiskPoint
+    }
+  )
+
+  renderRiskDetailsPanel(
+    d3.select('#risk_details_panel'),
+    {
+      risks: risks,
+      selectedRiskPoint: selectedRiskPoint
     }
   )
 
@@ -25,7 +40,7 @@ const render = ({risks}) => {
 getAllRiskTables().then(
   ([companies, departments, processes, risks]) => {
 
-    // Render riskMap
+    // Render riskMap for first time
     setupRiskMap(
       d3.select('#riskmap_graph'),
       {
@@ -43,10 +58,6 @@ getAllRiskTables().then(
       }
     );
     render({risks});
-    setupRiskDetailsPanel(
-      d3.select('#risk_details_panel'),
-      {risks}
-    )
 
 
     //After 2 seconds remove a risk and see what happens

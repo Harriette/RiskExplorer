@@ -81,7 +81,7 @@ export const setupRiskMap = (selection, props) => {
 }
 
 // Render the risk points
-export const renderRisks = (selection, { aes, risks }) => {
+export const renderRisks = (selection, { aes, risks, onClick, selectedRiskPoint }) => {
 
   const t = plotArea.transition().duration(500);
 
@@ -101,7 +101,13 @@ export const renderRisks = (selection, { aes, risks }) => {
           );
         // Each point consists of a circle, some text and a title
         riskPoint.append('circle')
+            .attr('id', d => d.id)
             .attr('r', 0 )
+            .attr('strokeWidth', 5)
+            .on('click', d => {
+                onClick(risks, d.target.id);
+              }
+            )
           .call(enter => enter.transition(t).attr('r', 0.1 * scales.x.bandwidth() ));
         riskPoint.append('text')
             .text(d => d.id)
@@ -121,5 +127,6 @@ export const renderRisks = (selection, { aes, risks }) => {
       }, ${
         scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)())
       })`)
+
 
 }
