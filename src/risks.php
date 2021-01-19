@@ -51,12 +51,11 @@ header('Cache-Control: max-age=10');
 
             <!-- Risk Map Graph on left of screen -->
             <div class="col-6 p-0">
-              <div class="ratio ratio-1x1" id="riskmap_graph"></div>
+              <div class="ratio ratio-1x1" id="riskmap_graph"></div> <!--Want a square and add map in javascript-->
             </div>
 
             <!-- Risk Details Panel -->
             <div class="col-6" id="risk_details_panel"></div> <!--Add table in javascript-->
-
 
         </div>
 
