@@ -100,13 +100,13 @@ ADD RISK MODAL
 -------------------------------------------------
 RISKMAP
 -------------------------------------------------
+*/
 
 
 #riskmap_graph {
-  min-width: 500px;
-  min-height: 500px
+  max-width: 600px;
+  max-height: 600px
 }
-*/
 
 .axis-title {
   fill: #999999;

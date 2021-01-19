@@ -1,7 +1,7 @@
 import { getAllRiskTables } from  './modules/getAllRiskTables2.js'
 import { rag_ratings } from './modules/riskLevels2.js';
 import { setupRiskMap, renderRisks } from './modules/newRiskMap4.js'
-import { renderRiskDetailsPanel } from './modules/riskDetailsPanel2.js'
+import { setupRiskDetailsPanel, renderRiskDetailsPanel } from './modules/riskDetailsPanel3.js'
 import { initRisklogTable } from './modules/riskLogTable.js'
 
 var selectedRiskPoint = null;
@@ -58,6 +58,7 @@ getAllRiskTables().then(
         rag_ratings: rag_ratings,
       }
     );
+    setupRiskDetailsPanel('#risk_details_panel');
     render({risks});
 
     // Render risklog table
