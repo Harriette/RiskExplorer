@@ -22,6 +22,10 @@ export const setupRiskMap = (selection, props) => {
       .attr('transform', `translate(${margin.left}, ${margin.top} )`)
       .attr('id', 'riskmap-plotArea');
 
+  plot.call(d3.zoom().on('zoom', (event) => {
+        plotArea.attr('transform', event.transform);
+      }));
+
   // Define scales
   scales = {
     x: d3.scaleBand()
@@ -103,7 +107,7 @@ export const renderRisks = (selection, { aes, risks, onClick, selectedRiskPoint 
         riskPoint.append('circle')
             .attr('id', d => d.id)
             .attr('r', 0 )
-            .attr('strokeWidth', 5)
+            .attr('stroke-width', 3)
             .on('click', d => {
                 onClick(risks, d.target.id);
               }
@@ -127,6 +131,7 @@ export const renderRisks = (selection, { aes, risks, onClick, selectedRiskPoint 
       }, ${
         scales.y(d[aes.yValue]) + scales.y.bandwidth() * (0.5 + d3.randomUniform(-0.4, 0.4)())
       })`)
+      .attr('stroke', d => d.id === selectedRiskPoint ? 'white' : 'none');
 
 
 }
