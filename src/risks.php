@@ -77,50 +77,23 @@ header('Cache-Control: max-age=10');
 
         </div>
 
-
-
         <!-- Risk Log -->
         <div class="row" id="page-risklog">
 
           <h1>Risk Log</h1>
 
-          <div class="container" id="table-risklog">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#addRiskModal">
+            Add new risk
+          </button>
 
-            <table id="risklog-table" class="display">
-              <thead>
-                <tr>
-                  <th rowspan="2">ID</th>
-                  <th rowspan="2">Level</th>
-                  <th rowspan="2">Name</th>
-                  <th rowspan="2">Description</th>
-                  <th colspan="4">Ratings</th>
-                  <th rowspan="2">Company</th>
-                  <th rowspan="2">Department</th>
-                  <th rowspan="2">Process</th>
-                  <th rowspan="2">Actions</th>
-                  <tr>
-                    <th>Prob</th>
-                    <th>Sev</th>
-                    <th>Rep</th>
-                    <th>RAG</th>
-                  </tr>
-                </thead>
-                <!-- Javascript to fill the table -->
-              </table>
+          <div class="container" id="table-risklog"></div> <!-- Create with javascript -->
 
-            </div><!-- End of Risk Log table -->
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary mt-3 mb-3" data-bs-toggle="modal" data-bs-target="#addRiskModal">
-              Add new risk
-            </button>
-
-          </div><!-- End of Risk Log -->
+        </div><!-- End of Risk Log -->
 
 
-
-          <!-- Add risk modal -->
-          <?php require_once "common/risks-modal.php" ?>
+        <!-- Add risk modal -->
+        <?php require_once "common/risks-modal.php" ?>
 
 
 
@@ -135,6 +108,6 @@ header('Cache-Control: max-age=10');
 
 </body>
 
-<script type="module" src="js/risks7.js"></script>
+<script type="module" src="js/risks8.js"></script>
 
 </html>

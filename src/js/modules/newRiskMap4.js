@@ -22,9 +22,13 @@ export const setupRiskMap = (selection, props) => {
       .attr('transform', `translate(${margin.left}, ${margin.top} )`)
       .attr('id', 'riskmap-plotArea');
 
-  plot.call(d3.zoom().on('zoom', (event) => {
+  // Zooming behavious
+  const zoom = d3.zoom()
+    .scaleExtent([0.5,5])
+    .on('zoom', (event) => {
         plotArea.attr('transform', event.transform);
-      }));
+      })
+  plot.call(zoom);
 
   // Define scales
   scales = {

@@ -2,6 +2,7 @@ import { getAllRiskTables } from  './modules/getAllRiskTables2.js'
 import { rag_ratings } from './modules/riskLevels2.js';
 import { setupRiskMap, renderRisks } from './modules/newRiskMap4.js'
 import { renderRiskDetailsPanel } from './modules/riskDetailsPanel2.js'
+import { initRisklogTable } from './modules/riskLogTable.js'
 
 var selectedRiskPoint = null;
 
@@ -59,18 +60,14 @@ getAllRiskTables().then(
     );
     render({risks});
 
+    // Render risklog table
+    initRisklogTable(
+      '#table-risklog',
+      {
+        data: risks
+      }
+    );
 
-    //After 2 seconds remove a risk and see what happens
-    setTimeout(() => {
-      risks.pop();
-      render({risks});
-    }, 2000)
-
-    //After 3 seconds remove a risk and see what happens
-    setTimeout(() => {
-      risks[1].prob_rating = "1";
-      render({risks});
-    }, 3000)
 
   }
 );
