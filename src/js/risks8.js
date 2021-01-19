@@ -47,7 +47,6 @@ getAllRiskTables().then(
     $("#addRiskModal").on('show.bs.modal', initRiskModal({risks}) );
     $("#deleteRiskModal").on('show.bs.modal', initDeleteRiskModal({risks}) );
 
-
     // Render riskMap for first time
     setupRiskMap(
       d3.select('#riskmap_graph'),

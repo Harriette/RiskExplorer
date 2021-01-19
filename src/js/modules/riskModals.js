@@ -25,9 +25,9 @@ export const initRiskModal = ({risks}, event) => {
       $('#inputDepartment').val(risk.department);
       $('#inputProcess').val(risk.process);
 
-      $('#addRiskForm').addClass('edit-risk')
+      $('#addRiskLabel').html('Edit risk')
     } else {
-      $('#addRiskForm').addClass('new-risk')
+      $('#addRiskLabel').html('Add a new risk')
     }
 
   } //End of return function
