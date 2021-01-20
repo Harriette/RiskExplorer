@@ -3,7 +3,7 @@ import { rag_ratings } from './modules/riskLevels2.js';
 import { setupRiskMap, renderRisks } from './modules/newRiskMap4.js'
 import { setupRiskDetailsPanel, renderRiskDetailsPanel } from './modules/riskDetailsPanel3.js'
 import { initRisklogTable } from './modules/riskLogTable.js'
-import { initRiskModal, initDeleteRiskModal } from './modules/riskModals.js'
+import { initRiskModal, initDeleteRiskModal, addRisk, deleteRisk } from './modules/riskModals2.js'
 
 var selectedRiskPoint = null;
 
@@ -43,9 +43,20 @@ const render = ({risks}) => {
 getAllRiskTables().then(
   ([companies, departments, processes, risks]) => {
 
+
     // Initialise behaviour when showing module to load up selected risk if necessary
     $("#addRiskModal").on('show.bs.modal', initRiskModal({risks}) );
+    $("#addRiskForm").submit(({risks}) => {
+      addRisk({risks});
+      return false;
+    });
+
     $("#deleteRiskModal").on('show.bs.modal', initDeleteRiskModal({risks}) );
+    $("#deleteRiskForm").submit(function(event){
+      deleteRisk();
+      return false;
+    });
+
 
     // Render riskMap for first time
     setupRiskMap(
@@ -102,10 +113,7 @@ addRisk();
 return false;
 });
 
-$("#deleteRiskForm").submit(function(event){
-deleteRisk();
-return false;
-});
+
 
 $("#addRiskModal").on('show.bs.modal', initRiskModal );
 

@@ -26,6 +26,7 @@ if (count($results) == 0) {
   $company_id = $results[0]['company_ID'];
 }
 
+
 // Check if we need a new department
 if ( $_POST['inputDepartment'] !== '') {
 
@@ -81,22 +82,28 @@ $sql = "INSERT INTO risks
         VALUES (:id, :na, :descr, :loss, :prob, :sev, :rep, :rag,
           :level, :co, :dep, :pro)";
 $stmt = $conn->prepare($sql);
-$stmt->execute(array(
-  ':id'    => $_POST['inputRiskID'],
-  ':na'    => $_POST['inputRiskName'],
-  ':descr' => $_POST['inputRiskDescription'],
-  ':loss'  => $_POST['inputIsLoss'] == '' ? 0 : 1,
-  ':prob'  => $_POST['inputProbRating'],
-  ':sev'   => $_POST['inputSevRating'],
-  ':rep'   => $_POST['inputRepRating'],
-  ':rag'   => $_POST['selectRAGRating'],
-  ':level' => $_POST['inputRiskLevel'],
-  ':co'    => $company_id,
-  ':dep'   => $department_id,
-  ':pro'   => $process_id
-));
-$message .= 'Added new risk. ';
+
+try {
+
+  $stmt->execute(array(
+    ':id'    => $_POST['inputRiskID'],
+    ':na'    => $_POST['inputRiskName'],
+    ':descr' => $_POST['inputRiskDescription'],
+    ':loss'  => $_POST['inputIsLoss'] == '' ? 0 : 1,
+    ':prob'  => $_POST['inputProbRating'] == '' ? null : $_POST['inputProbRating'],
+    ':sev'   => $_POST['inputSevRating'] == '' ? null : $_POST['inputSevRating'],
+    ':rep'   => $_POST['inputRepRating'] == '' ? null : $_POST['inputRepRating'],
+    ':rag'   => $_POST['selectRAGRating'] == '' ? null : $_POST['selectRAGRating'],
+    ':level' => $_POST['inputRiskLevel'] == '' ? null : $_POST['inputRiskLevel'],
+    ':co'    => $company_id,
+    ':dep'   => $department_id,
+    ':pro'   => $process_id
+  ));
+  $message .= 'Added new risk. ';
+
+} catch (PDOException $e) {
+  $message .= 'Fail: ' . $e->getMessage();
+}
+
 
 $_SESSION['success'] = $message;
-
-echo $message;
