@@ -67,6 +67,9 @@ export const initRisklogTable = (selection, props) => {
             case '4':
               return('R')
               break;
+            default:
+              return('')
+              break;
           }
         }
       },
@@ -98,6 +101,8 @@ export const initRisklogTable = (selection, props) => {
           break;
         case '4':
           $(row).addClass('red')
+          break;
+        default:
           break;
       }
     }

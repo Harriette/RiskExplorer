@@ -2,7 +2,7 @@ import { getAllRiskTables } from  './modules/getAllRiskTables2.js'
 import { rag_ratings } from './modules/riskLevels2.js';
 import { setupRiskMap, renderRisks } from './modules/newRiskMap4.js'
 import { setupRiskDetailsPanel, renderRiskDetailsPanel } from './modules/riskDetailsPanel3.js'
-import { initRisklogTable } from './modules/riskLogTable.js'
+import { initRisklogTable } from './modules/riskLogTable2.js'
 import { initRiskModal, initDeleteRiskModal, addRisk, deleteRisk } from './modules/riskModals2.js'
 
 var selectedRiskPoint = null;

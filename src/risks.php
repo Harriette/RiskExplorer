@@ -90,6 +90,6 @@ header('Cache-Control: max-age=10');
 
 </body>
 
-<script type="module" src="js/risks10.js"></script>
+<script type="module" src="js/risks11.js"></script>
 
 </html>
